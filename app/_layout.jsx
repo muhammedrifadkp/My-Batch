@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // Polyfill required so `uuid` (v4) can use secure random bytes in React Native
 // Install with: npm install react-native-get-random-values
 import 'react-native-get-random-values';
 import { Stack } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
+import migrations from './utils/migrations';
 
 export default function Layout() {
+  const [migrating, setMigrating] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    async function run() {
+      try {
+        await migrations.runMigrations();
+      } catch (err) {
+        console.error('Migration failed', err);
+      } finally {
+        if (mounted) setMigrating(false);
+      }
+    }
+    run();
+    return () => { mounted = false; };
+  }, []);
+
+  if (migrating) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#4285f4" />
+        <Text style={{ marginTop: 10 }}>Preparing data...</Text>
+      </View>
+    );
+  }
+
   return (
     <Stack
       screenOptions={{
