@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "scheme": "caddclub",
+    "name": "Cadd Club",
+    "slug": "reactNative",
+    "version": "1.2.5",
+    "orientation": "portrait",
+    "icon": "./assets/appLogo.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/appLogo.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.muhammedrifadkp.caddclub"
+    },
+    "web": {
+      "favicon": "./assets/appLogo.png",
+      "bundler": "metro",
+      "output": "static",
+      "meta": {
+        "viewport": "width=device-width, initial-scale=1, user-scalable=no"
+      }
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d0e2090d-9986-4a2f-be4b-3894b54779ce"
+      }
+    }
+  }
+}
